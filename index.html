@@ -31,6 +31,7 @@
     /* ── RESET ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html  { scroll-behavior: smooth; }
+    #about, #pillars, #issue { scroll-margin-top: 90px; }
     body  {
       background: var(--bg);
       color: var(--text-primary);
@@ -93,11 +94,15 @@
     .nav-sublink {
       font-family: var(--f-mono); font-size: 9.5px;
       letter-spacing: 0.16em;
-      color: var(--text-muted); transition: color 0.18s;
+      color: var(--text-sec); transition: color 0.18s;
       align-self: flex-start;
     }
     .nav-sublink:hover { color: var(--accent); }
     .nav-right { display: flex; align-items: center; gap: 22px; }
+    .nav-tabs { display: flex; align-items: center; gap: 22px; }
+    @media (max-width: 860px) {
+      .nav-tabs { display: none; }
+    }
     .nav-cta {
       font-family: var(--f-mono);
       font-size: 10.5px; font-weight: 700;
@@ -448,7 +453,7 @@
     }
     .footer-links { display: flex; flex-direction: column; gap: 10px; }
     .footer-link {
-      font-size: 13px; color: var(--text-muted);
+      font-size: 13px; color: var(--text-sec);
       transition: color 0.18s; display: inline-flex; align-items: center; gap: 4px;
     }
     .footer-link:hover { color: var(--text-sec); }
@@ -596,8 +601,14 @@
         </div>
 
       </div>
+      <div class="nav-tabs">
+        <a href="#about" class="nav-sublink">About</a>
+        <a href="#pillars" class="nav-sublink">Pillars</a>
+        <a href="#issue" class="nav-sublink">Publication</a>
+        <a href="https://thebrandscript.blogspot.com" target="_blank" rel="noopener" class="nav-sublink">Blog</a>
+      </div>
       <div class="nav-right">
-        <a href="https://brandstrendsai.substack.com" target="_blank" rel="noopener" class="nav-cta">
+        <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="nav-cta">
           Subscribe →
         </a>
       </div>
@@ -621,7 +632,7 @@
           Independent intelligence on South African brands, consumer behaviour, cultural trends and AI.
         </p>
         <div class="cta-row">
-          <a href="https://brandstrendsai.substack.com" target="_blank" rel="noopener" class="btn-primary">
+          <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="btn-primary">
             Subscribe ↗
           </a>
           <span class="launch-marker">Issue 01 — 18 September 2026</span>
@@ -631,7 +642,7 @@
   </div>
 
   <!-- ── PHASE 2: CREDIBILITY / ABOUT ──────────────────────── -->
-  <section class="about">
+  <section class="about" id="about">
     <div class="container">
       <div class="about-grid">
         <div>
@@ -673,7 +684,7 @@
   </section>
 
   <!-- ── PHASE 3: THREE PILLARS ────────────────────────────── -->
-  <section class="pillars">
+  <section class="pillars" id="pillars">
     <div class="container">
       <div class="pillars-label">
         <span class="label">Three Pillars</span>
@@ -717,7 +728,7 @@
   </section>
 
   <!-- ── PHASE 4: ISSUE 01 ─────────────────────────────────── -->
-  <section class="issue">
+  <section class="issue" id="issue">
     <div class="container">
       <div class="issue-header">
         <p class="issue-pub">The Publication</p>
@@ -753,7 +764,8 @@
       </div>
       <div class="issue-cta">
         <p class="issue-arrival">Arriving 18 September 2026</p>
-        <a href="https://brandstrendsai.substack.com" target="_blank" rel="noopener" class="btn-ghost">
+        <!-- TODO: Replace this href with the Paystack Payment Page/Link for Issue 01 once Paystack access is restored. This CTA becomes the gated purchase for the full issue. -->
+        <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="btn-ghost" data-payment="paystack-pending">
           Subscribe to be first →
         </a>
       </div>
@@ -853,7 +865,7 @@
       </div>
       <h2 class="subscribe-headline">Don't wait for the trend report.</h2>
       <p class="subscribe-sub">Get the signal before it becomes one.</p>
-      <a href="https://brandstrendsai.substack.com" target="_blank" rel="noopener" class="btn-primary">
+      <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="btn-primary">
         Subscribe to Brands | Trends + AI →
       </a>
     </div>
@@ -871,10 +883,20 @@
         </div>
 
         <div>
+          <span class="footer-col-label">Explore</span>
+          <div class="footer-links">
+            <a href="#about" class="footer-link">About</a>
+            <a href="#pillars" class="footer-link">Pillars</a>
+            <a href="#issue" class="footer-link">Publication</a>
+            <a href="https://thebrandscript.blogspot.com" target="_blank" rel="noopener" class="footer-link">Blog ↗</a>
+          </div>
+        </div>
+
+        <div>
           <span class="footer-col-label">Connect</span>
           <div class="footer-links">
             <a href="https://www.linkedin.com/company/brands-trends-ai/" target="_blank" rel="noopener" class="footer-link">LinkedIn ↗</a>
-            <a href="https://brandstrendsai.substack.com" target="_blank" rel="noopener" class="footer-link">Substack ↗</a>
+            <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="footer-link">Support ↗</a>
           </div>
         </div>
 
