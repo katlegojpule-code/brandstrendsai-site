@@ -12,16 +12,16 @@
 
     /* ── TOKENS ─────────────────────────────────────────────── */
     :root {
-      --bg:           #0A0A0E;
-      --bg-lift:      #0F0F15;
-      --bg-deep:      #070709;
-      --accent:       #BBB633;
-      --accent-dim:   rgba(187,182,51,0.1);
-      --accent-border:rgba(187,182,51,0.22);
-      --text-primary: #F0F0EC;
-      --text-sec:     #88887E;
-      --text-muted:   #4A4A44;
-      --border:       rgba(240,240,236,0.07);
+      --bg:           #FAF9F4;
+      --bg-lift:      #F1EEE3;
+      --bg-deep:      #E7E1D0;
+      --accent:       #8C8521;
+      --accent-dim:   rgba(140,133,33,0.10);
+      --accent-border:rgba(140,133,33,0.25);
+      --text-primary: #1C1B14;
+      --text-sec:     #5B5947;
+      --text-muted:   #8F8C78;
+      --border:       rgba(28,27,20,0.10);
       --f-display:    'DM Serif Display', Georgia, serif;
       --f-body:       'Inter', sans-serif;
       --f-mono:       'Space Mono', monospace;
@@ -69,7 +69,7 @@
     /* ── NAV ────────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10,10,14,0.92);
+      background: rgba(250,249,244,0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -100,8 +100,23 @@
     .nav-sublink:hover { color: var(--accent); }
     .nav-right { display: flex; align-items: center; gap: 22px; }
     .nav-tabs { display: flex; align-items: center; gap: 22px; }
+    .nav-toggle {
+      display: none; background: none; border: 1px solid var(--border);
+      color: var(--text-primary); font-family: var(--f-mono); font-size: 13px;
+      letter-spacing: 0.08em; padding: 6px 10px; cursor: pointer; border-radius: 3px;
+    }
+    .nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
     @media (max-width: 860px) {
-      .nav-tabs { display: none; }
+      .nav-toggle { display: block; }
+      .nav-tabs {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: var(--bg); border-bottom: 1px solid var(--border);
+        padding: 8px 20px 14px;
+      }
+      .nav-tabs.nav-tabs-open { display: flex; }
+      .nav-tabs a { padding: 10px 0; width: 100%; }
     }
     .nav-cta {
       font-family: var(--f-mono);
@@ -606,12 +621,9 @@
         <a href="#pillars" class="nav-sublink">Pillars</a>
         <a href="#issue" class="nav-sublink">Publication</a>
         <a href="https://thebrandscript.blogspot.com" target="_blank" rel="noopener" class="nav-sublink">Blog</a>
+        <a href="https://www.linkedin.com/company/brands-trends-ai/" target="_blank" rel="noopener" class="nav-sublink">LinkedIn</a>
       </div>
-      <div class="nav-right">
-        <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="nav-cta">
-          Subscribe →
-        </a>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
     </div>
   </nav>
 
@@ -632,9 +644,6 @@
           Independent intelligence on South African brands, consumer behaviour, cultural trends and AI.
         </p>
         <div class="cta-row">
-          <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="btn-primary">
-            Subscribe ↗
-          </a>
           <span class="launch-marker">Issue 01 — 18 September 2026</span>
         </div>
       </div>
@@ -764,10 +773,7 @@
       </div>
       <div class="issue-cta">
         <p class="issue-arrival">Arriving 18 September 2026</p>
-        <!-- TODO: Replace this href with the Paystack Payment Page/Link for Issue 01 once Paystack access is restored. This CTA becomes the gated purchase for the full issue. -->
-        <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="btn-ghost" data-payment="paystack-pending">
-          Subscribe to be first →
-        </a>
+        <!-- TODO: Add the Paystack Payment Page/Link here once Paystack access is restored, to gate purchase of the full issue. -->
       </div>
     </div>
   </section>
@@ -865,9 +871,6 @@
       </div>
       <h2 class="subscribe-headline">Don't wait for the trend report.</h2>
       <p class="subscribe-sub">Get the signal before it becomes one.</p>
-      <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="btn-primary">
-        Subscribe to Brands | Trends + AI →
-      </a>
     </div>
   </section>
 
@@ -896,7 +899,6 @@
           <span class="footer-col-label">Connect</span>
           <div class="footer-links">
             <a href="https://www.linkedin.com/company/brands-trends-ai/" target="_blank" rel="noopener" class="footer-link">LinkedIn ↗</a>
-            <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="footer-link">Support ↗</a>
           </div>
         </div>
 
@@ -910,5 +912,22 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var tabs = document.querySelector('.nav-tabs');
+      if (!toggle || !tabs) return;
+      toggle.addEventListener('click', function () {
+        var open = tabs.classList.toggle('nav-tabs-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      tabs.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          tabs.classList.remove('nav-tabs-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
