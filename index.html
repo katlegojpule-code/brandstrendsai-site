@@ -622,6 +622,8 @@
         <a href="#issue" class="nav-sublink">Publication</a>
         <a href="https://thebrandscript.blogspot.com" target="_blank" rel="noopener" class="nav-sublink">Blog</a>
         <a href="https://www.linkedin.com/company/brands-trends-ai/" target="_blank" rel="noopener" class="nav-sublink">LinkedIn</a>
+        <a href="mailto:hello@brandstrendsai.co.za" class="nav-sublink js-email">Email</a>
+        <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="nav-sublink">Buy Me a Coffee</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
     </div>
@@ -900,7 +902,8 @@
           <span class="footer-col-label">Connect</span>
           <div class="footer-links">
             <a href="https://www.linkedin.com/company/brands-trends-ai/" target="_blank" rel="noopener" class="footer-link">LinkedIn ↗</a>
-            <a href="mailto:hello@brandstrendsai.co.za" class="footer-link">hello@brandstrendsai.co.za</a>
+            <a href="mailto:hello@brandstrendsai.co.za" class="footer-link js-email">hello@brandstrendsai.co.za</a>
+            <a href="https://buymeacoffee.com/brandstrendsai" target="_blank" rel="noopener" class="footer-link">Buy Me a Coffee ↗</a>
           </div>
         </div>
 
@@ -927,6 +930,17 @@
         link.addEventListener('click', function () {
           tabs.classList.remove('nav-tabs-open');
           toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    (function () {
+      var address = 'hello@brandstrendsai.co.za';
+      document.querySelectorAll('.js-email').forEach(function (el) {
+        el.addEventListener('click', function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(address).catch(function () {});
+          }
         });
       });
     })();
